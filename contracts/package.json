@@ -1,0 +1,20 @@
+{
+  "name": "metis-hardhat-template",
+  "version": "1.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@openzeppelin/contracts": "^5.1.0",
+    "dotenv": "^16.4.7",
+    "hardhat": "^2.22.19",
+    "hardhat-deploy": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
