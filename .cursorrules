@@ -1,0 +1,390 @@
+# PrivateInsight - AI-Powered Privacy Analytics Platform
+# Production-Level Development Rules & Guidelines
+
+## Project Overview
+PrivateInsight is a decentralized privacy-preserving data analytics platform that combines zero-knowledge proofs, AI-powered insights, and multi-party computation to enable secure data analysis without compromising privacy. Built on Metis Hyperion with Alith AI agents and powered by Filecoin's decentralized storage infrastructure.
+
+## Core Architecture Principles
+
+### 1. Privacy-First Design
+- All data processing must use zero-knowledge proofs or secure multi-party computation
+- No plaintext sensitive data should be stored or transmitted
+- Implement privacy-preserving ML techniques (federated learning, differential privacy)
+- Use homomorphic encryption for sensitive computations
+
+### 2. Production-Ready Standards
+- NEVER use mocks, simulations, or dummy data
+- All integrations must be with real services and protocols
+- Implement proper error handling and logging
+- Use production-grade security practices
+- Follow enterprise-level code quality standards
+
+### 3. Filecoin Integration Requirements
+- **PDP Storage**: Use Proof of Data Possession for hot, verifiable data storage
+- **FilCDN**: Implement FilCDN for instant analytics result delivery
+- **FVM Smart Contracts**: Deploy privacy contracts on Filecoin Virtual Machine
+- **IPFS Content Addressing**: Use content-addressed storage for data provenance
+- **Cross-Chain Storage**: Enable seamless Filecoin-Metis data bridging
+- **ZK-SNARK Integration**: Leverage Filecoin's 6M+ daily ZK proofs infrastructure
+
+### 4. Metis Hyperion Integration
+- Leverage MetisVM for AI inference on-chain
+- Use Parallel Execution for high-throughput privacy operations
+- Implement Metis SDK for optimized blockchain interactions
+- Utilize Hyperion's decentralized sequencer network
+
+### 5. Alith AI Integration
+- Use Alith framework for privacy-preserving AI agents
+- Implement multi-model support (Llama, OpenAI, Anthropic)
+- Create custom workflows for privacy analytics
+- Leverage TEE-based secure inference
+
+## Technology Stack Requirements
+
+### Smart Contracts (Multi-Chain Deployment)
+
+#### Filecoin Virtual Machine (FVM) Contracts
+```
+contracts/filecoin/
+├── core/
+│   ├── FilecoinPrivateInsight.sol  # Main FVM contract
+│   ├── PDPDataVault.sol            # PDP-based storage vault
+│   ├── FileCDNController.sol       # FilCDN integration
+│   └── CrossChainBridge.sol        # Metis-Filecoin bridge
+├── storage/
+│   ├── DecentralizedStorage.sol    # IPFS/Filecoin storage
+│   ├── DataProvenanceTracker.sol   # Content-addressed provenance
+│   └── StorageDealManager.sol      # Automated deal management
+├── privacy/
+│   ├── FilecoinZKVerifier.sol      # Leverage Filecoin ZK infrastructure
+│   ├── PDPProofValidator.sol       # PDP proof verification
+│   └── PrivacyPreservingCompute.sol # Secure computation on stored data
+└── interfaces/
+    ├── IPDPStorage.sol             # PDP storage interface
+    ├── IFileCDN.sol                # FileCDN interface
+    └── ICrossChainStorage.sol      # Cross-chain storage interface
+```
+
+#### Metis Hyperion Contracts
+```
+contracts/metis/
+├── core/
+│   ├── PrivateInsightCore.sol      # Main platform contract
+│   ├── ZKAnalytics.sol             # Zero-knowledge analytics engine
+│   ├── MPCCoordinator.sol          # Multi-party computation coordinator
+│   └── DataVault.sol               # Local encrypted data storage
+├── privacy/
+│   ├── ZKProofVerifier.sol         # ZK proof verification
+│   ├── HomomorphicCompute.sol      # Homomorphic encryption operations
+│   └── DifferentialPrivacy.sol    # Differential privacy mechanisms
+├── ai/
+│   ├── AlithIntegration.sol        # Alith AI agent interface
+│   ├── FederatedLearning.sol       # FL coordination
+│   └── ModelRegistry.sol           # AI model management
+├── bridge/
+│   ├── FilecoinConnector.sol       # Connect to Filecoin storage
+│   ├── CrossChainAnalytics.sol     # Cross-chain analytics
+│   └── StorageOracle.sol           # Filecoin storage oracle
+└── interfaces/
+    ├── IMetisVM.sol                # MetisVM AI interface
+    ├── IPrivacyEngine.sol          # Privacy computation interface
+    └── IAlithAgent.sol             # Alith agent interface
+```
+
+### Filecoin Integration Layer (TypeScript/Rust)
+```
+src/filecoin/
+├── storage/
+│   ├── PDPClient.ts                # PDP storage client
+│   ├── FileCDNIntegration.ts       # FileCDN integration
+│   ├── IPFSManager.ts              # IPFS content management
+│   └── DealMaker.ts                # Automated storage deals
+├── privacy/
+│   ├── FilecoinZKProofs.ts         # ZK proof integration
+│   ├── ContentVerification.ts     # Content integrity verification
+│   └── PrivateStorageAccess.ts    # Privacy-preserving data access
+├── crosschain/
+│   ├── MetisFilecoinBridge.ts      # Cross-chain bridge
+│   ├── StorageReplication.ts      # Multi-chain storage
+│   └── DataSynchronization.ts     # Cross-chain data sync
+└── clients/
+    ├── FilecoinClient.ts           # Filecoin network client
+    ├── LotusPipelineClient.ts      # Lotus API integration
+    └── SpaceRaceClient.ts          # Storage provider management
+```
+
+### AI Agents (Enhanced with Filecoin)
+```
+ai-agents/
+├── src/
+│   ├── privacy/
+│   │   ├── ZKAnalyticsAgent.ts     # Zero-knowledge analytics
+│   │   ├── MPCAgent.ts             # Multi-party computation
+│   │   ├── PrivacyAuditor.ts       # Privacy compliance auditing
+│   │   └── FilecoinPrivacyAgent.ts # Filecoin-specific privacy operations
+│   ├── storage/
+│   │   ├── PDPStorageAgent.ts      # PDP storage management
+│   │   ├── FileCDNAgent.ts         # Content delivery optimization
+│   │   ├── IPFSReplicationAgent.ts # IPFS data replication
+│   │   └── StorageDealAgent.ts     # Automated storage deal creation
+│   ├── analytics/
+│   │   ├── FederatedLearner.ts     # Federated learning agent
+│   │   ├── InsightGenerator.ts     # Privacy-preserving insights
+│   │   ├── DataClassifier.ts       # Sensitive data classification
+│   │   └── CrossChainAnalyzer.ts   # Multi-chain analytics
+│   ├── coordination/
+│   │   ├── WorkflowOrchestrator.ts # Multi-agent coordination
+│   │   ├── ConsensusAgent.ts       # Distributed consensus
+│   │   └── CrossChainCoordinator.ts # Cross-chain coordination
+│   └── clients/
+│       ├── MetisClient.ts          # Metis SDK integration
+│       ├── FilecoinClient.ts       # Filecoin integration
+│       ├── AlithClient.ts          # Alith framework client
+│       └── PrivacyClient.ts        # Privacy protocol client
+```
+
+### Frontend (Enhanced Multi-Chain Support)
+```
+frontend/
+├── app/
+│   ├── dashboard/                  # Main analytics dashboard
+│   ├── privacy/                    # Privacy controls
+│   ├── insights/                   # Generated insights
+│   ├── storage/                    # Filecoin storage management
+│   ├── crosschain/                 # Cross-chain operations
+│   └── governance/                 # DAO governance
+├── components/
+│   ├── privacy/                    # Privacy-preserving UI components
+│   ├── analytics/                  # Data visualization
+│   ├── storage/                    # Filecoin storage UI
+│   ├── crosschain/                 # Cross-chain bridge UI
+│   └── ai/                         # AI agent interfaces
+└── lib/
+    ├── privacy/                    # Privacy utilities
+    ├── crypto/                     # Cryptographic functions
+    ├── filecoin/                   # Filecoin integration utilities
+    ├── crosschain/                 # Cross-chain utilities
+    └── ai/                         # AI integration utilities
+```
+
+## Filecoin Technology Integration
+
+### 1. Proof of Data Possession (PDP)
+- **Implementation**: Store all privacy analytics datasets using PDP
+- **Benefits**: Sub-second access, cryptographic availability proofs
+- **Use Cases**: Hot storage for frequently accessed AI training data
+- **Integration**: Direct PDP provider connections for real-time analytics
+
+### 2. FilCDN Integration
+- **Purpose**: Instant delivery of analytics results and AI insights
+- **Features**: Global edge distribution, optimized for PDP deals
+- **Performance**: Real-time data access for privacy-preserving analytics
+- **Scaling**: Handle enterprise-level data delivery requirements
+
+### 3. Filecoin Virtual Machine (FVM)
+- **Smart Contracts**: Deploy privacy-preserving contracts on FVM
+- **Cross-Chain**: Bridge Metis and Filecoin for unified platform
+- **Programmable Storage**: Automated storage deal management
+- **ZK Integration**: Leverage Filecoin's massive ZK infrastructure
+
+### 4. IPFS Content Addressing
+- **Data Provenance**: Immutable content-addressed data history
+- **Integrity**: Cryptographic verification of data authenticity
+- **Deduplication**: Efficient storage through content addressing
+- **Interoperability**: Seamless integration with existing IPFS ecosystem
+
+### 5. Cross-Chain Architecture
+- **Metis-Filecoin Bridge**: Secure cross-chain communication
+- **Unified Analytics**: Analytics across both chains
+- **Storage Replication**: Multi-chain data redundancy
+- **Gas Optimization**: Optimal execution across both networks
+
+## Development Guidelines
+
+### 1. Filecoin Integration Requirements
+- All sensitive data MUST be stored using PDP for verifiable availability
+- Use FileCDN for all analytics result delivery
+- Implement content-addressed storage for complete data provenance
+- Deploy complementary contracts on both Filecoin and Metis
+- Use real Filecoin storage providers, never mock storage
+
+### 2. Multi-Chain Deployment Strategy
+```typescript
+// Deployment configuration
+export const DEPLOYMENT_CONFIG = {
+  filecoin: {
+    network: 'mainnet', // Use real Filecoin mainnet
+    rpc: 'https://api.node.glif.io',
+    contracts: {
+      storage: 'FilecoinPrivateInsight',
+      bridge: 'CrossChainBridge',
+      privacy: 'FilecoinZKVerifier'
+    }
+  },
+  metis: {
+    network: 'hyperion', // Metis Hyperion mainnet
+    rpc: 'https://andromeda.metis.io/?owner=1088',
+    contracts: {
+      core: 'PrivateInsightCore',
+      analytics: 'ZKAnalytics',
+      ai: 'AlithIntegration'
+    }
+  }
+}
+```
+
+### 3. Security Requirements
+- All cryptographic operations must use audited libraries
+- Implement proper key management and rotation
+- Use secure random number generation
+- Follow OWASP security guidelines
+- Implement rate limiting and DoS protection
+- Verify all Filecoin storage proofs before trusting data
+
+### 4. Privacy Standards
+- Comply with GDPR, CCPA, and other privacy regulations
+- Implement privacy by design principles
+- Use formal verification for critical privacy components
+- Conduct regular privacy impact assessments
+- Leverage Filecoin's ZK infrastructure for maximum privacy
+
+### 5. AI/ML Best Practices
+- Use differential privacy for model training
+- Implement federated learning protocols
+- Store AI models on Filecoin with PDP guarantees
+- Ensure AI fairness and bias mitigation
+- Use explainable AI techniques where possible
+
+### 6. Code Quality Standards
+- TypeScript strict mode enabled
+- ESLint + Prettier configuration
+- Comprehensive unit and integration tests
+- Code coverage minimum 80%
+- Automated security scanning
+
+### 7. Testing Requirements
+- Unit tests for all business logic
+- Integration tests for API endpoints
+- End-to-end tests for user workflows
+- Cross-chain testing for Metis-Filecoin bridge
+- Privacy property testing (cryptographic proofs)
+- Filecoin storage verification tests
+- Performance benchmarking
+
+## Real Integration Requirements
+
+### 1. Blockchain Networks
+- **Filecoin Mainnet**: Primary decentralized storage
+- **Metis Hyperion**: AI computation and analytics
+- **Ethereum**: Cross-chain compatibility
+- **Polygon**: Additional scalability layer
+
+### 2. Filecoin Ecosystem
+- **PDP Storage Providers**: Real storage provider network
+- **FileCDN**: Production content delivery network
+- **IPFS Network**: Global content addressing
+- **Lotus Client**: Filecoin node API integration
+- **FVM Runtime**: Smart contract execution
+
+### 3. Privacy Protocols
+- **Filecoin ZK-SNARKs**: Leverage 6M+ daily proofs
+- **Aztec Protocol**: Additional ZK privacy layer
+- **Secret Network**: Confidential computing
+- **Oasis Protocol**: Privacy-preserving smart contracts
+
+### 4. AI/ML Services
+- **Alith AI**: Web3-native AI agent framework
+- **Filecoin Compute**: Compute-over-data protocols
+- **Hugging Face**: Model hosting and distribution
+- **OpenAI API**: Advanced language models
+
+### 5. Storage Infrastructure
+- **Filecoin PDP**: Hot, verifiable storage
+- **IPFS**: Content-addressed data layer
+- **FileCDN**: High-performance content delivery
+- **Ceramic Network**: Decentralized data streams
+
+## Environment Configuration
+
+### Multi-Chain Configuration
+```env
+# Filecoin Configuration
+FILECOIN_RPC_URL=https://api.node.glif.io
+FILECOIN_PRIVATE_KEY=your_filecoin_private_key
+PDP_STORAGE_PROVIDER=your_pdp_provider_id
+FILCDN_API_KEY=your_filcdn_api_key
+IPFS_GATEWAY=https://gateway.ipfs.io
+
+# Metis Configuration  
+METIS_RPC_URL=https://andromeda.metis.io/?owner=1088
+METIS_PRIVATE_KEY=your_metis_private_key
+METIS_HYPERION_CONFIG=production
+
+# Cross-Chain Bridge
+BRIDGE_CONTRACT_FILECOIN=0x...
+BRIDGE_CONTRACT_METIS=0x...
+CROSS_CHAIN_ORACLE=0x...
+```
+
+### Storage Configuration
+```env
+# PDP Storage Settings
+PDP_REPLICATION_FACTOR=3
+PDP_CHALLENGE_FREQUENCY=daily
+PDP_MINIMUM_STORAGE_TIME=30d
+
+# FileCDN Settings
+FILCDN_REGION=global
+FILCDN_CACHE_TTL=3600
+FILCDN_EDGE_OPTIMIZATION=true
+```
+
+## Deployment Architecture
+
+### 1. Filecoin Deployment
+- Deploy storage contracts on Filecoin Virtual Machine
+- Set up PDP storage providers for hot data
+- Configure FileCDN for global content delivery
+- Establish IPFS pinning services
+
+### 2. Metis Deployment
+- Deploy core analytics contracts on Metis Hyperion
+- Configure AI agent infrastructure
+- Set up privacy computation services
+- Initialize cross-chain bridge
+
+### 3. Cross-Chain Integration
+- Deploy bridge contracts on both chains
+- Set up cross-chain oracles
+- Configure automated storage replication
+- Initialize multi-chain governance
+
+## Performance Requirements
+
+### Storage Performance
+- PDP storage: Sub-second data access
+- FileCDN delivery: <100ms global latency
+- IPFS retrieval: <1s for pinned content
+- Cross-chain operations: <30s confirmation
+
+### Analytics Performance
+- Real-time privacy-preserving analytics
+- Federated learning convergence optimization
+- ZK proof generation optimization
+- Multi-chain state synchronization
+
+## Monitoring & Observability
+
+### Filecoin Monitoring
+- Storage deal success rates
+- PDP proof verification status
+- FileCDN performance metrics
+- IPFS pin status tracking
+
+### Cross-Chain Monitoring
+- Bridge transaction success rates
+- Cross-chain state synchronization
+- Storage replication status
+- Multi-chain analytics performance
+
+Remember: NO mocks, simulations, or test data in production code. Every feature must integrate with real Filecoin and Metis protocols. All storage operations must use real PDP providers and FileCDN. Privacy and security are non-negotiable requirements across both chains. 

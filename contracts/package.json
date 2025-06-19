@@ -1,20 +1,51 @@
 {
-  "name": "metis-hardhat-template",
-  "version": "1.1.0",
+  "name": "@privateinsight/contracts",
+  "version": "1.0.0",
+  "description": "Smart contracts for PrivateInsight platform",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
+    "dev": "hardhat node",
+    "build": "hardhat compile",
     "test": "hardhat test",
-    "compile": "hardhat compile"
+    "deploy": "hardhat run scripts/deploy.ts --network localhost",
+    "deploy:testnet": "hardhat run scripts/deploy.ts --network metis-testnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.ts --network metis-mainnet",
+    "verify": "hardhat verify",
+    "lint": "solhint 'contracts/**/*.sol'",
+    "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+    "clean": "hardhat clean",
+    "typechain": "hardhat typechain",
+    "coverage": "hardhat coverage",
+    "gas-report": "REPORT_GAS=true hardhat test",
+    "audit": "slither .",
+    "size": "hardhat size-contracts"
   },
   "dependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
-    "@openzeppelin/contracts": "^5.1.0",
-    "dotenv": "^16.4.7",
-    "hardhat": "^2.22.19",
-    "hardhat-deploy": "^1.0.1"
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  }
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "hardhat": "^2.22.13",
+    "hardhat-deploy": "^0.12.4",
+    "hardhat-gas-reporter": "^1.0.10",
+    "hardhat-contract-sizer": "^2.10.0",
+    "solhint": "^5.0.3",
+    "solidity-coverage": "^0.8.12",
+    "@typechain/hardhat": "^9.1.0",
+    "@typechain/ethers-v6": "^0.5.1",
+    "typechain": "^8.3.2",
+    "ethers": "^6.13.4",
+    "dotenv": "^16.4.5"
+  },
+  "keywords": [
+    "privacy",
+    "zero-knowledge",
+    "smart-contracts",
+    "metis",
+    "blockchain"
+  ],
+  "author": "Kamal Singh <kamalsingh@outlook.com>",
+  "license": "MIT"
 }
