@@ -23,7 +23,7 @@ class PrivateInsightApp {
 
   constructor() {
     this.app = express();
-    this.port = parseInt(process.env.PORT || '3000');
+    this.port = parseInt(process.env['PORT'] || '3000');
     this.initializeMiddleware();
     this.initializeRoutes();
   }
@@ -47,7 +47,7 @@ class PrivateInsightApp {
 
     // CORS configuration
     this.app.use(cors({
-      origin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:3000'],
+      origin: process.env['CORS_ORIGIN']?.split(',') || ['http://localhost:3000'],
       credentials: true,
     }));
 
@@ -91,13 +91,13 @@ class PrivateInsightApp {
         description: 'AI-Powered Privacy-Preserving Data Analytics Platform',
         networks: {
           filecoin: {
-            network: process.env.FILECOIN_NETWORK || 'mainnet',
-            rpc: process.env.FILECOIN_RPC_URL || 'https://api.node.glif.io',
+            network: process.env['FILECOIN_NETWORK'] || 'mainnet',
+            rpc: process.env['FILECOIN_RPC_URL'] || 'https://api.node.glif.io',
             features: ['PDP Storage', 'FilCDN', 'FVM Contracts']
           },
           metis: {
-            network: process.env.METIS_NETWORK || 'hyperion',
-            rpc: process.env.METIS_RPC_URL || 'https://andromeda.metis.io/?owner=1088',
+            network: process.env['METIS_NETWORK'] || 'hyperion',
+            rpc: process.env['METIS_RPC_URL'] || 'https://andromeda.metis.io/?owner=1088',
             features: ['AI Computation', 'Privacy Analytics', 'Cross-Chain Bridge']
           }
         },
@@ -216,8 +216,8 @@ class PrivateInsightApp {
       this.server.listen(this.port, () => {
         logger.info(`🚀 PrivateInsight Platform started successfully!`);
         logger.info(`📡 Server running on http://localhost:${this.port}`);
-        logger.info(`🔗 Filecoin Network: ${process.env.FILECOIN_NETWORK || 'mainnet'}`);
-        logger.info(`⚡ Metis Network: ${process.env.METIS_NETWORK || 'hyperion'}`);
+        logger.info(`🔗 Filecoin Network: ${process.env['FILECOIN_NETWORK'] || 'mainnet'}`);
+        logger.info(`⚡ Metis Network: ${process.env['METIS_NETWORK'] || 'hyperion'}`);
         logger.info(`🛡️  Privacy-first analytics platform ready`);
         
         console.log('\n🎯 Available Endpoints:');

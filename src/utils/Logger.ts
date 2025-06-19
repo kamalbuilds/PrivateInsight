@@ -8,7 +8,7 @@ export class Logger {
 
   constructor(component: string) {
     this.logger = winston.createLogger({
-      level: process.env.LOG_LEVEL || 'info',
+      level: process.env['LOG_LEVEL'] || 'info',
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.errors({ stack: true }),
@@ -32,19 +32,27 @@ export class Logger {
           )
         }),
         new winston.transports.File({
-          filename: 'logs/error.log',
+          filename: './logs/error.log',
           level: 'error'
         }),
         new winston.transports.File({
-          filename: 'logs/combined.log'
+          filename: './logs/combined.log'
         })
       ]
     });
 
-    // Create logs directory if it doesn't exist
-    const fs = require('fs');
-    if (!fs.existsSync('logs')) {
-      fs.mkdirSync('logs');
+    // If we're not in production, log to the console with more detail
+    if (process.env['NODE_ENV'] !== 'production') {
+      this.logger.add(new winston.transports.Console({
+        format: winston.format.combine(
+          winston.format.timestamp(),
+          winston.format.colorize(),
+          winston.format.printf(({ timestamp, level, message, component: comp, ...meta }) => {
+            const metaString = Object.keys(meta).length ? `\n${JSON.stringify(meta, null, 2)}` : '';
+            return `${timestamp} [${comp || component}] ${level}: ${message}${metaString}`;
+          })
+        )
+      }));
     }
   }
 
@@ -52,8 +60,8 @@ export class Logger {
     this.logger.info(message, meta);
   }
 
-  error(message: string, error?: any): void {
-    this.logger.error(message, { error: error?.message || error, stack: error?.stack });
+  error(message: string, meta?: any): void {
+    this.logger.error(message, meta);
   }
 
   warn(message: string, meta?: any): void {
@@ -62,5 +70,9 @@ export class Logger {
 
   debug(message: string, meta?: any): void {
     this.logger.debug(message, meta);
+  }
+
+  verbose(message: string, meta?: any): void {
+    this.logger.verbose(message, meta);
   }
 } 
